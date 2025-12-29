@@ -12,8 +12,12 @@ async function startBot() {
 
   const sock = makeWASocket({
     auth: state,
-    printQRInTerminal: false
   })
+if (!sock.authState.creds.registered) {
+  const phoneNumber = '55SEUNUMEROAQUI'
+  const code = await sock.requestPairingCode(phoneNumber)
+  console.log('🔑 Código de pareamento:', code)
+}
 
   // 💾 Salvar sessão
   sock.ev.on('creds.update', saveCreds)
