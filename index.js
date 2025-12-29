@@ -12,26 +12,11 @@ async function startBot() {
 
   const sock = makeWASocket({
     auth: state,
+    printQRInTerminal: false
   })
+
   // 💾 Salvar sessão
   sock.ev.on('creds.update', saveCreds)
-sock.ev.on('connection.update', async (update) => {
-  const { connection } = update
-
-  if (connection === 'open') {
-    console.log('✅ Walkher conectado ao WhatsApp')
-  }
-
-  if (connection === 'close' && !sock.authState.creds.registered) {
-    try {
-      const phoneNumber = '5531999999999' // seu número
-      const code = await sock.requestPairingCode(phoneNumber)
-      console.log('🔑 Código de pareamento:', code)
-    } catch (err) {
-      console.error('❌ Erro ao gerar código de pareamento:', err)
-    }
-  }
-})
 
   // 🔌 Conexão
   sock.ev.on('connection.update', (update) => {
