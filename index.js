@@ -1,6 +1,7 @@
 import { makeWASocket, useMultiFileAuthState, jidNormalizedUser } from "@whiskeysockets/baileys";
 import fs from "fs";
-import { createCanvas, loadImage } from "canvas";
+import { createCanvas, loadImage } from "@napi-rs/canvas";
+
 
 const prefix = "!";
 const NumberDono = "5511999999999"; // Coloque seu número do WhatsApp
